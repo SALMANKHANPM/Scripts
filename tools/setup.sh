@@ -20,4 +20,3 @@ then
 else
     printf %"s\n" "You've chosen Ubuntu.." "RUNNING SCRIPTS" "" | typing && bash debian/env_debian.sh
 fi
-
