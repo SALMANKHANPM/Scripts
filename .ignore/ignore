@@ -1,5 +1,28 @@
 #!/usr/bin/env bash
 
+# Detecting which System Package Manager is currently installed in system.
+declare -A osInfo;
+osInfo[/etc/redhat-release]=yum
+osInfo[/etc/arch-release]=pacman
+osInfo[/etc/debian_version]=apt
+
+# Installing PV package for typing effect.
+for f in ${!osInfo[@]}
+do
+    if [[ -f $f ]];then
+        declare ${osInfo[$f]}="package"
+    fi
+done
+
+if [ "package" == "arch" ]
+then
+    pacman -S pv --noconfirm -h
+    elif [[ "package" == "yum" ]];then
+        yum -S pv xclip --noconfirm -h &> installation.log
+    else
+        apt install pv xclip --noconfirm &> installation.log
+fi
+
 # declaring function
 function typing () { 
     pv -qL 10
