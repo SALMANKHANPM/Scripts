@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+# declaring function
+function typing () { 
+    pv -qL 10
+}
